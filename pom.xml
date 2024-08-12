@@ -1,5 +1,7 @@
-<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://maven.apache.org/POM/4.0.0"
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>org.example</groupId>
@@ -17,52 +19,70 @@
   </properties>
 
   <dependencies>
+    <!-- TestNG Dependency -->
     <dependency>
       <groupId>org.testng</groupId>
       <artifactId>testng</artifactId>
       <version>7.10.2</version>
-      <scope>test</scope>
     </dependency>
 
+    <!-- Lombok Dependency -->
+    <dependency>
+      <groupId>org.projectlombok</groupId>
+      <artifactId>lombok</artifactId>
+      <version>1.18.34</version> <!-- Use the latest stable version -->
+      <scope>provided</scope>
+    </dependency>
+
+    <!-- Selenium Java Dependency -->
     <dependency>
       <groupId>org.seleniumhq.selenium</groupId>
       <artifactId>selenium-java</artifactId>
-      <version>4.22.0</version>
+      <version>LATEST</version>
     </dependency>
 
+    <!-- WebDriverManager Dependency -->
     <dependency>
       <groupId>io.github.bonigarcia</groupId>
-      <artifactId>webdrivermanager</artifactId> <!-- Needed for WebDriver Manager -->
+      <artifactId>webdrivermanager</artifactId>
       <version>5.8.0</version>
     </dependency>
 
+    <!-- JSON Simple Dependency -->
     <dependency>
       <groupId>com.googlecode.json-simple</groupId>
       <artifactId>json-simple</artifactId>
       <version>1.1.1</version>
     </dependency>
 
+    <!-- Selenium Support Dependency (for Select class and other utilities) -->
     <dependency>
-      <groupId>org.seleniumhq.selenium
-      </groupId> <!-- This dependency allows you to use the select class for using select object on dropdowns -->
+      <groupId>org.seleniumhq.selenium</groupId>
       <artifactId>selenium-support</artifactId>
       <version>4.22.0</version>
+    </dependency>
+    <dependency>
+      <groupId>com.aventstack</groupId>
+      <artifactId>extentreports</artifactId>
+      <version>5.0.9</version>
     </dependency>
   </dependencies>
 
   <build>
     <plugins>
-      <!-- Maven Surefire Plugin for running tests -->
+      <!-- Maven Surefire Plugin -->
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-surefire-plugin</artifactId>
         <version>3.2.5</version>
         <configuration>
-          <includes>
-            <include>**/*Test.java</include>
-          </includes>
+          <suiteXmlFiles>
+            <!-- Reference to your TestNG suite file -->
+            <suiteXmlFile>src/test/java/UnitTest/unitTest.xml</suiteXmlFile>
+          </suiteXmlFiles>
         </configuration>
       </plugin>
     </plugins>
   </build>
+
 </project>

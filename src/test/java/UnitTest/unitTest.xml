@@ -1,0 +1,11 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
+
+<suite name="Sample Test Suite" parallel="false">
+    <!-- Define the Test -->
+    <test name="Sample Test">
+        <classes>
+            <!-- Specify the test classes to be executed -->
+            <class name="SignIn.SignInTest"/>
+        </classes>
+    </test>
+</suite>
