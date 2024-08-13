@@ -145,14 +145,3 @@ This project is licensed under the MIT License. See the [LICENSE](LICENSE) file 
 For questions or support, please contact [phemilegend@yahoo.com](mailto:your.email@example.com).
 
 ```
-
-### Explanation:
-
-- **Project Structure**: Clearly outlines where everything is located in your project.
-- **Getting Started**: Provides basic setup instructions.
-- **Running Tests**: Explains how to run the tests using Maven or directly from the IDE.
-- **Configuration**: Details on how to configure the framework and where key files are located.
-- **Reporting**: Mentions where the test reports and screenshots are stored.
-- **CI/CD Integration**: Provides an example of integrating the project into a CI/CD pipeline.
-- **Contributing**: Instructions on how others can contribute to the project.
-- **License**: Details about the project's license.
