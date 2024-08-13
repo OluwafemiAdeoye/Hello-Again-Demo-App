@@ -1,3 +1,7 @@
+Here’s the updated `README.md` file based on your instructions:
+
+---
+
 # Hello-Again-Demo-App
 
 ## Overview
@@ -21,6 +25,8 @@ Hello-Again-Demo-App/
 ├── .idea/                            # IntelliJ IDEA project settings
 │
 ├── resources/
+│   ├── Reporter/                     # Directory for generated reports
+│   │   └── extent-report.html        # ExtentReports HTML report
 │   ├── screenshots/                  # Stores screenshots captured during tests
 │   │   └── testSignIn.png            # Example screenshot file
 │   ├── Test Case/                    # Stores test case documentation
@@ -37,6 +43,8 @@ Hello-Again-Demo-App/
 │   │       └── utils/                # Utility classes
 │   │           ├── CookieManager.java
 │   │           ├── EventReporter.java
+│   │           ├── ExtentManager.java
+│   │           ├── ITestResult.java
 │   │           ├── JsonReader.java
 │   │           └── WindowManager.java
 │   └── test/
@@ -45,6 +53,8 @@ Hello-Again-Demo-App/
 │           │   └── BaseTest.java
 │           └── SignIn/               # Test cases for sign-in functionality
 │               └── SignInTest.java
+│           └── UnitTest/             # Unit tests
+│               └── unitTest.xml
 │
 ├── target/                           # Output directory for compiled code and reports
 │
@@ -65,7 +75,7 @@ Hello-Again-Demo-App/
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/yourusername/Hello-Again-Demo-App.git
+   git clone https://github.com/oluwafemiadeoye/Hello-Again-Demo-App.git
    ```
 2. Navigate to the project directory:
    ```bash
@@ -89,13 +99,17 @@ Tests can be run directly from the IDE or via Maven.
 
 ### Configuration
 
-- **Test Data**: Located in the `resources/test-data/` directory. You can modify `TestData.json` to include different data sets for testing.
+- **Test Data**: Located in the `resources/test-data/` directory. You can modify `TestData.json` to include different data sets for testing. This file should include the email and password, and you can change the `firstName` to any name of your choice.
 - **Screenshots**: Captured screenshots are stored in the `resources/screenshots/` directory.
 - **Test Case Documentation**: Stored in the `resources/Test Case/` directory as an Excel file (`Hello-Again-Test-Script.xlsx`).
 
+### Customization
+
+- **Windows-Specific Customization**: On line 39 of `HelloAgainDashboardPage.java`, you may need to update the code to use `Keys.CONTROL + "e"` instead of the `Keys.COMMAND + "a"` method if running on a Windows laptop. This is necessary because the `.clear()` method did not effectively clear the existing text field.
+
 ### Reporting
 
-Test results are generated in the `target/surefire-reports` directory. Screenshots of failures are stored in `resources/screenshots/`.
+Test results are generated in the `resources/Reporter/extent-report.html` directory. Screenshots of failures are stored in `resources/screenshots/`.
 
 ### CI/CD Integration
 
@@ -107,7 +121,7 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                git 'https://github.com/yourusername/Hello-Again-Demo-App.git'
+                git 'https://github.com/oluwafemiadeoye/Hello-Again-Demo-App.git'
             }
         }
         stage('Build') {
@@ -142,19 +156,4 @@ This project is licensed under the MIT License. See the [LICENSE](LICENSE) file 
 
 ## Contact
 
-For questions or support, please contact [your.email@example.com](mailto:your.email@example.com).
-
-```
-
-### Explanation:
-
-- **Project Structure**: Clearly outlines where everything is located in your project.
-- **Getting Started**: Provides basic setup instructions.
-- **Running Tests**: Explains how to run the tests using Maven or directly from the IDE.
-- **Configuration**: Details on how to configure the framework and where key files are located.
-- **Reporting**: Mentions where the test reports and screenshots are stored.
-- **CI/CD Integration**: Provides an example of integrating the project into a CI/CD pipeline.
-- **Contributing**: Instructions on how others can contribute to the project.
-- **License**: Details about the project's license.
-
-You can replace placeholders like `yourusername`, `your.email@example.com`, and the GitHub repository URL with your actual details.
+For questions or support, please contact [phemilegend@yahoo.com](mailto:phemilegend@yahoo.com).

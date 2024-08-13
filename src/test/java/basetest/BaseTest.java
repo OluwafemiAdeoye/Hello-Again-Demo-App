@@ -22,33 +22,38 @@ import utils.ExtentManager;
 import utils.WindowManager;
 
 import java.io.File;
+import java.lang.reflect.Method;
 import java.util.concurrent.TimeUnit;
 
 public class BaseTest {
     protected WebDriver driver;
     protected HomePage homePage;
     protected static ExtentReports extent;
-    protected static ExtentTest extentTest;
+    protected ExtentTest extentTest;
 
     @BeforeClass
     public void setUp() {
         WebDriverManager.chromedriver().setup();
 
         // Initialize ExtentReports
-        ExtentSparkReporter sparkReporter = new ExtentSparkReporter("target/extent-report.html");
+        ExtentSparkReporter sparkReporter = new ExtentSparkReporter("resources/Reporter/extent-report.html");
         extent = new ExtentReports();
         extent.attachReporter(sparkReporter);
         extent.setSystemInfo("OS", System.getProperty("os.name"));
         extent.setSystemInfo("Java Version", System.getProperty("java.version"));
 
-        // Initialize the WebDriver
-        WebDriver originalDriver = new ChromeDriver();
+        WebDriver webDriver = new ChromeDriver();
 
-        // Decorate WebDriver with event listener
         EventReporter eventReporter = new EventReporter();
-        driver = new EventFiringDecorator(eventReporter).decorate(originalDriver);
+        driver = new EventFiringDecorator(eventReporter).decorate(webDriver);
         driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
         goHome();
+    }
+
+    @BeforeMethod
+    public void initializeTest(Method method) {
+        // Initialize extentTest with the name of the current test method
+        extentTest = extent.createTest(method.getName());
     }
 
     @BeforeMethod
@@ -62,20 +67,17 @@ public class BaseTest {
         if (driver != null) {
             driver.quit();
         }
-        // Flush the ExtentReports
         if (extent != null) {
             extent.flush();
         }
     }
 
-    // Screenshot capture method
     public String captureScreenshot(WebDriver driver, String screenshotName) {
-        String screenshotPath = "resources/screenshots/" + screenshotName + ".png";
+        String screenshotPath = "resources/screenshots/" + screenshotName + ".jpeg";
         try {
             TakesScreenshot camera = (TakesScreenshot) driver;
             File source = camera.getScreenshotAs(OutputType.FILE);
             File destination = new File(screenshotPath);
-//            Files.move(screenshot, new File("resources/screenshots/" + result.getName() + ".png"));
             Files.copy(source.toPath().toFile(), destination.toPath().toFile());
         } catch (Exception e) {
             System.out.println("Exception while taking screenshot: " + e.getMessage());
@@ -85,6 +87,10 @@ public class BaseTest {
 
     @AfterMethod
     public void tearDownTest(ITestResult result) {
+        if (extentTest == null) {
+            System.out.println("extentTest is null!");
+        }
+
         if (result.getStatus() == ITestResult.FAILURE) {
             String screenshotPath = captureScreenshot(driver, result.getName());
             extentTest.fail("Test failed: " + result.getThrowable(),
@@ -94,6 +100,7 @@ public class BaseTest {
         } else {
             extentTest.pass("Test passed");
         }
+
         ExtentManager.flushReports();
     }
 
