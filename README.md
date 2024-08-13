@@ -1,7 +1,3 @@
-Here’s the updated `README.md` file based on your instructions:
-
----
-
 # Hello-Again-Demo-App
 
 ## Overview
