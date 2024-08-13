@@ -65,7 +65,7 @@ Hello-Again-Demo-App/
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/yourusername/Hello-Again-Demo-App.git
+   git clone https://github.com/oluwafemiadeoye/Hello-Again-Demo-App.git
    ```
 2. Navigate to the project directory:
    ```bash
@@ -95,7 +95,7 @@ Tests can be run directly from the IDE or via Maven.
 
 ### Reporting
 
-Test results are generated in the `target/surefire-reports` directory. Screenshots of failures are stored in `resources/screenshots/`.
+Test results are generated in the `resources/Reporter/extent-report.html` directory. Screenshots of failures are stored in `resources/screenshots/`.
 
 ### CI/CD Integration
 
@@ -107,7 +107,7 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                git 'https://github.com/yourusername/Hello-Again-Demo-App.git'
+                git 'https://github.com/oluwafemiadeoye/Hello-Again-Demo-App.git'
             }
         }
         stage('Build') {
@@ -142,7 +142,7 @@ This project is licensed under the MIT License. See the [LICENSE](LICENSE) file 
 
 ## Contact
 
-For questions or support, please contact [your.email@example.com](mailto:your.email@example.com).
+For questions or support, please contact [phemilegend@yahoo.com](mailto:your.email@example.com).
 
 ```
 
@@ -156,5 +156,3 @@ For questions or support, please contact [your.email@example.com](mailto:your.em
 - **CI/CD Integration**: Provides an example of integrating the project into a CI/CD pipeline.
 - **Contributing**: Instructions on how others can contribute to the project.
 - **License**: Details about the project's license.
-
-You can replace placeholders like `yourusername`, `your.email@example.com`, and the GitHub repository URL with your actual details.
