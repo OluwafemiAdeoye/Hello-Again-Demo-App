@@ -23,7 +23,7 @@ import utils.WindowManager;
 
 import java.io.File;
 import java.lang.reflect.Method;
-import java.util.concurrent.TimeUnit;
+import java.time.Duration;
 
 public class BaseTest {
     protected WebDriver driver;
@@ -45,8 +45,8 @@ public class BaseTest {
         WebDriver webDriver = new ChromeDriver();
 
         EventReporter eventReporter = new EventReporter();
-        driver = new EventFiringDecorator(eventReporter).decorate(webDriver);
-        driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+        driver = new EventFiringDecorator<>(eventReporter).decorate(webDriver);
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
         goHome();
     }
 
@@ -73,7 +73,7 @@ public class BaseTest {
     }
 
     public String captureScreenshot(WebDriver driver, String screenshotName) {
-        String screenshotPath = "resources/screenshots/" + screenshotName + ".jpeg";
+        String screenshotPath = System.getProperty("user.dir") + "resources/screenshots/" + screenshotName + ".jpeg";
         try {
             TakesScreenshot camera = (TakesScreenshot) driver;
             File source = camera.getScreenshotAs(OutputType.FILE);

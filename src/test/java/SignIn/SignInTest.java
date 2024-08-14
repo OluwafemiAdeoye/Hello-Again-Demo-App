@@ -14,7 +14,7 @@ import java.lang.reflect.Method;
 public class SignInTest extends BaseTest {
 
     @Test(dataProvider = "dataProvider")
-    public void testSignIn(String email, String password, String expectedFirstName) throws InterruptedException {
+    public void testSignIn(String email, String password, String expectedFirstName) {
         SoftAssert softAssert = new SoftAssert();
         extentTest = extent.createTest("testSignIn - " + email);
 

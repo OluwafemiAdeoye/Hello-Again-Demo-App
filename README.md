@@ -84,14 +84,44 @@ Hello-Again-Demo-App/
 
 ### Running Tests
 
-Tests can be run directly from the IDE or via Maven.
+Tests can be run directly from the IDE, via Maven, or directly from the terminal using TestNG.
 
-- **Using Maven**:
+#### **Using Maven:**
   ```bash
   mvn test
   ```
-- **Using TestNG**:
-  Run `SignInTest` or any other test class from the IDE.
+
+#### **Using TestNG in the IDE:**
+
+1. **Run TestNG Suite:** You can execute tests by right-clicking on the `unitTest.xml` file located in the `src/test/java/UnitTest/` directory and selecting `Run 'unitTest.xml'`. This will run all the tests configured in that TestNG suite file.
+
+2. **Run Individual Test Class:** You can also run individual test classes (like `SignInTest.java`) by right-clicking on the test class file and selecting `Run 'SignInTest'`.
+
+#### **Running TestNG Tests from the Terminal:**
+
+1. **Navigate to the Project Directory:**
+   ```bash
+   cd /path/to/your/project
+   ```
+
+2. **Run TestNG Suite Using Maven:**
+   ```bash
+   mvn test -Dsurefire.suiteXmlFiles=src/test/java/UnitTest/unitTest.xml
+   ```
+
+    - **Explanation:**
+        - `mvn test`: Tells Maven to run the tests.
+        - `-Dsurefire.suiteXmlFiles`: Specifies the path to the TestNG XML suite file that you want Maven to run.
+        - `src/test/java/UnitTest/unitTest.xml`: The path to your TestNG suite file.
+
+3. **Run a Specific Test Class Using TestNG:**
+   ```bash
+   mvn -Dtest=SignInTest test
+   ```
+
+    - **Explanation:**
+        - `-Dtest=SignInTest`: This tells Maven to run only the `SignInTest` class.
+        - `test`: The Maven goal to execute the tests.
 
 ### Configuration
 
@@ -101,7 +131,7 @@ Tests can be run directly from the IDE or via Maven.
 
 ### Customization
 
-- **Windows-Specific Customization**: On line 39 of `HelloAgainDashboardPage.java`, you may need to update the code to use `Keys.CONTROL + "e"` instead of the `Keys.COMMAND + "a"` method if running on a Windows laptop. This is necessary because the `.clear()` method did not effectively clear the existing text field.
+- **Windows-Specific Customization**: On line 39 of HelloAgainDashboardPage.java, you may need to update the code to use Keys.CONTROL + "e" instead of the Keys.COMMAND + "a" method if running on a Windows laptop. This is necessary because the .clear() method did not effectively clear the existing text field.
 
 ### Reporting
 
