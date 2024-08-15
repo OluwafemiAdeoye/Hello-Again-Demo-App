@@ -10,7 +10,7 @@ public class ExtentManager {
 
     public static ExtentReports getExtentReports() {
         if (extent == null) {
-            ExtentSparkReporter sparkReporter = new ExtentSparkReporter("target/extent-report.html");
+            ExtentSparkReporter sparkReporter = new ExtentSparkReporter("resources/Reporter/extent-report.html");
             extent = new ExtentReports();
             extent.attachReporter(sparkReporter);
             extent.setSystemInfo("OS", System.getProperty("os.name"));

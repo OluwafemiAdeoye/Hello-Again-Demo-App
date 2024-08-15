@@ -4,7 +4,7 @@ import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.MediaEntityBuilder;
 import com.aventstack.extentreports.reporter.ExtentSparkReporter;
-import com.google.common.io.Files;
+
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
@@ -20,7 +20,7 @@ import pages.HomePage;
 import utils.EventReporter;
 import utils.ExtentManager;
 import utils.WindowManager;
-
+import java.nio.file.Files;
 import java.io.File;
 import java.lang.reflect.Method;
 import java.time.Duration;
@@ -73,12 +73,12 @@ public class BaseTest {
     }
 
     public String captureScreenshot(WebDriver driver, String screenshotName) {
-        String screenshotPath = System.getProperty("user.dir") + "resources/screenshots/" + screenshotName + ".jpeg";
+        String screenshotPath = System.getProperty("user.dir") + "/resources/screenshots/" + screenshotName + ".jpeg";
         try {
             TakesScreenshot camera = (TakesScreenshot) driver;
             File source = camera.getScreenshotAs(OutputType.FILE);
             File destination = new File(screenshotPath);
-            Files.copy(source.toPath().toFile(), destination.toPath().toFile());
+            Files.copy(source.toPath(), destination.toPath());
         } catch (Exception e) {
             System.out.println("Exception while taking screenshot: " + e.getMessage());
         }
